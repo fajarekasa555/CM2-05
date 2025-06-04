@@ -23,4 +23,23 @@ public class AntrianProcess {
         size++;
     }
 
+    public void tampilkanAntrian() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.println("Daftar Kendaraan dalam Antrian:");
+            NodeAntrian current = front;
+            int no = 1;
+            while (current != null) {
+                System.out.println("Kendaraan ke-" + no++);
+                current.kendaraan.tampilkanInformasi();
+                System.out.println();
+                current = current.next;
+            }
+        }
+    }
+
+    public int jumlahAntrian() {
+        return size;
+    }
 }

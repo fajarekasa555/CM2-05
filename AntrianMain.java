@@ -32,6 +32,12 @@ public class AntrianMain {
                     antrian.enqueue(kendaraan);
                     System.out.println(">> Kendaraan masuk ke dalam antrian");
                     break;
+                case 2:
+                    antrian.tampilkanAntrian();
+                    break;
+                case 3:
+                    System.out.println(">> Jumlah Kendaraan dalam Antrian: " + antrian.jumlahAntrian());
+                    break;
                 case 0:
                     System.out.println("Terima kasih telah menggunakan SPBU kami!");
                     break;
