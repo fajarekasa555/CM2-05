@@ -42,9 +42,9 @@ public class AntrianMain {
                     Kendaraan dilayani = antrian.dequeue();
                     if (dilayani != null) {
                         System.out.println(">> Melayani kendaraan dengan plat: " + dilayani.platNomor);
-                        System.out.print("Masukkan Jenis BBM\t: ");
+                        System.out.print("Masukkan Jenis BBM\t\t: ");
                         String bbm = sc.nextLine();
-                        System.out.print("Masukkan Harga per Liter\t\t: ");
+                        System.out.print("Masukkan Harga per Liter\t: ");
                         int harga = sc.nextInt();
                         System.out.print("Masukkan Jumlah Liter\t\t: ");
                         int liter = sc.nextInt(); sc.nextLine();

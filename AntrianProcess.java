@@ -1,15 +1,17 @@
 public class AntrianProcess {
     NodeKendaraan front, rear;
-    NodeBBM headBBM;
-    NodeTransaksi headTransaksi;
+    NodeTransaksi frontTransaksi, rearTransaksi;
+    NodeBBM frontBBM, rearBBM;
     int size;
 
     public AntrianProcess() {
         front = null;
         rear = null;
+        frontTransaksi = null;
+        rearTransaksi = null;
+        frontBBM = null;
+        rearBBM = null;
         size = 0;
-        headBBM = null;
-        headTransaksi = null;
     }
 
     boolean isEmpty() {
@@ -64,38 +66,31 @@ public class AntrianProcess {
         TransaksiPengisian transaksi = new TransaksiPengisian(kendaraan, bbm, liter);
 
         NodeBBM newBBM = new NodeBBM(bbm);
-        if (headBBM == null) {
-            headBBM = newBBM;
-        }
-        else {
-            NodeBBM current = headBBM;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newBBM;
+        if (frontBBM == null) {
+            frontBBM = rearBBM = newBBM;
+        } else {
+            rearBBM.next = newBBM;
+            rearBBM = newBBM;
         }
 
         NodeTransaksi newTransaksi = new NodeTransaksi(transaksi);
-        if (headTransaksi == null) {
-            headTransaksi = newTransaksi;
+        if (frontTransaksi == null) {
+            frontTransaksi = rearTransaksi = newTransaksi;
         } else {
-            NodeTransaksi current = headTransaksi;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newTransaksi;
+            rearTransaksi.next = newTransaksi;
+            rearTransaksi = newTransaksi;
         }
 
         System.out.println(">> Transaksi Berhasil Dicatat.");
     }
 
     void tampilkanRiwayatTransaksi() {
-        if (headTransaksi == null) {
+        if (frontTransaksi == null) {
             System.out.println("Belum ada transaksi.");
             return;
         }
 
-        NodeTransaksi current = headTransaksi;
+        NodeTransaksi current = frontTransaksi;
         System.out.println("\n-- Riwayat Transaksi --");
         System.out.println("Daftar Transaksi :");
         while (current != null) {
