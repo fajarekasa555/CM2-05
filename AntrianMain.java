@@ -38,6 +38,18 @@ public class AntrianMain {
                 case 3:
                     System.out.println(">> Jumlah Kendaraan dalam Antrian: " + antrian.jumlahAntrian());
                     break;
+                case 4:
+                    Kendaraan dilayani = antrian.dequeue();
+                    if (dilayani != null) {
+                        System.out.println(">> Melayani kendaraan dengan plat: " + dilayani.platNomor);
+                        System.out.print("Masukkan Jenis BBM\t: ");
+                        String bbm = sc.nextLine();
+                        System.out.print("Masukkan Harga per Liter\t: ");
+                        int harga = sc.nextInt();
+                        System.out.print("Masukkan Jumlah Liter\t: ");
+                        int liter = sc.nextInt(); sc.nextLine(); 
+                    }
+                    break;
                 case 0:
                     System.out.println("Terima kasih telah menggunakan SPBU kami!");
                     break;

@@ -42,4 +42,16 @@ public class AntrianProcess {
     public int jumlahAntrian() {
         return size;
     }
+
+    public Kendaraan dequeue() {
+        if (isEmpty()) {
+            System.out.println("Tidak ada kendaraan dalam antrian.");
+            return null;
+        }
+        Kendaraan dilayani = front.kendaraan;
+        front = front.next;
+        size--;
+        if (front == null) rear = null;
+        return dilayani;
+    }
 }
