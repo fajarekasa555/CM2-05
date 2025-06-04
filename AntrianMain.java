@@ -44,11 +44,15 @@ public class AntrianMain {
                         System.out.println(">> Melayani kendaraan dengan plat: " + dilayani.platNomor);
                         System.out.print("Masukkan Jenis BBM\t: ");
                         String bbm = sc.nextLine();
-                        System.out.print("Masukkan Harga per Liter\t: ");
+                        System.out.print("Masukkan Harga per Liter\t\t: ");
                         int harga = sc.nextInt();
-                        System.out.print("Masukkan Jumlah Liter\t: ");
-                        int liter = sc.nextInt(); sc.nextLine(); 
+                        System.out.print("Masukkan Jumlah Liter\t\t: ");
+                        int liter = sc.nextInt(); sc.nextLine();
+                        antrian.tambahTransaksiPengisian(dilayani, bbm, harga, liter);
                     }
+                    break;
+                case 5:
+                    antrian.tampilkanRiwayatTransaksi();
                     break;
                 case 0:
                     System.out.println("Terima kasih telah menggunakan SPBU kami!");

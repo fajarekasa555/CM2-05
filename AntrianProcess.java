@@ -1,11 +1,15 @@
 public class AntrianProcess {
-    NodeAntrian front, rear;
+    NodeKendaraan front, rear;
+    NodeBBM headBBM;
+    NodeTransaksi headTransaksi;
     int size;
 
     public AntrianProcess() {
         front = null;
         rear = null;
         size = 0;
+        headBBM = null;
+        headTransaksi = null;
     }
 
     boolean isEmpty() {
@@ -13,7 +17,7 @@ public class AntrianProcess {
     }
 
     void enqueue(Kendaraan kendaraan) {
-        NodeAntrian newNode = new NodeAntrian(kendaraan);
+        NodeKendaraan newNode = new NodeKendaraan(kendaraan);
         if (isEmpty()) {
             front = rear = newNode;
         } else {
@@ -28,7 +32,7 @@ public class AntrianProcess {
             System.out.println("Antrian kosong.");
         } else {
             System.out.println("Daftar Kendaraan dalam Antrian:");
-            NodeAntrian current = front;
+            NodeKendaraan current = front;
             int no = 1;
             while (current != null) {
                 System.out.println("Kendaraan ke-" + no++);
@@ -53,5 +57,51 @@ public class AntrianProcess {
         size--;
         if (front == null) rear = null;
         return dilayani;
+    }
+
+    void tambahTransaksiPengisian(Kendaraan kendaraan, String jenisBBM, int hargaPerLiter, int liter) {
+        BBM bbm = new BBM(jenisBBM, hargaPerLiter);
+        TransaksiPengisian transaksi = new TransaksiPengisian(kendaraan, bbm, liter);
+
+        NodeBBM newBBM = new NodeBBM(bbm);
+        if (headBBM == null) {
+            headBBM = newBBM;
+        }
+        else {
+            NodeBBM current = headBBM;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newBBM;
+        }
+
+        NodeTransaksi newTransaksi = new NodeTransaksi(transaksi);
+        if (headTransaksi == null) {
+            headTransaksi = newTransaksi;
+        } else {
+            NodeTransaksi current = headTransaksi;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newTransaksi;
+        }
+
+        System.out.println(">> Transaksi Berhasil Dicatat.");
+    }
+
+    void tampilkanRiwayatTransaksi() {
+        if (headTransaksi == null) {
+            System.out.println("Belum ada transaksi.");
+            return;
+        }
+
+        NodeTransaksi current = headTransaksi;
+        System.out.println("\n-- Riwayat Transaksi --");
+        System.out.println("Daftar Transaksi :");
+        while (current != null) {
+            TransaksiPengisian transaksi = current.transaksi;
+            System.out.println(transaksi.kendaraan.platNomor + "\t: Rp." + transaksi.totalBayar);
+            current = current.next;
+        }
     }
 }
